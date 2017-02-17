@@ -1,0 +1,19 @@
+In Scala the are many ways to achieve object-oriented encapulation. For example, one of my preferred is:
+
+trait AnInterface {
+  def aMethod(): AType
+}
+
+object AnInterface {
+  def apply() = new AnHiddenImplementation()
+
+  private class AnHiddenImplementation {
+    var aVariable: AType = _
+    def aMethod(): AType = {
+       // operate on the internal aVariable
+    }
+  }
+}
+Firstly, define the trait (the public interface) so to make immediately clear what the clients will see. Then write its companion object to provide a factory method which instantiate a default concrete implementation. That implementation can be completely hidden from clients if defined private inside the companion object.
+
+As you can see the Scala code is much more concise of any Java solution
